@@ -136,7 +136,6 @@ function getMovieInfo(parameter) {
 		}
 		//turns response into JSON object, and displays response in console
 		body = JSON.parse(body);
-		// console.log('Artist(s): ' + body.tracks.items[0].artists[0].name);
 		console.dir('Title: ' + body.Title, { colors: true });
 		console.dir('Release Year: ' + body.Year, { colors: true });
 		console.dir('IMDB Rating: ' + body.imdbRating, { colors: true });
@@ -146,8 +145,6 @@ function getMovieInfo(parameter) {
 		console.dir('Actors: ' + body.Actors, { colors: true });
 		console.dir('Rotten Tomatoes Rating: ' + body.tomatoRating, { colors: true });
 		console.dir('Rotten Tomatoes URL: ' + body.tomatoURL, { colors: true });
-
-		
 
 		//writes query request and response to log.txt
 		writeableObj = command + ", " + parameter + ", " + body.Title + ", " + body.Year + ", " + body.imdbRating + ", " + body.Country + ", " + body.Language + ", " + body.Plot + ", " + body.Actors + ", " + body.tomatoRating + ", " + body.tomatoURL + "\n";
