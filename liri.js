@@ -1,7 +1,9 @@
 //allows access to the key.js file
 const twitterKeys = require('./keys.js');
+
 //allows access to the file system
 var fs = require('fs');
+
 //allows access to utils for coloring text 
 var utils = require('util');
 
@@ -20,13 +22,11 @@ var twitterSearchParam = {
 //general request variable
 var request = require('request');
 
-
 //sets variable for arguments
 var command = process.argv[2];
 
 //sets variable to have access to all other inputs as a parameter to the queries
 var parameter = process.argv.slice(3).join('+');
-
 
 //function for writing to txt.log
 function writeToLog(textParam) {
@@ -48,11 +48,11 @@ switch (command) {
 		getMyTweets();
 		break;
 	case 'spotify-this-song':
-		
+
 		getMusicInfo(parameter);
 		break;
 	case 'movie-this':
-		
+
 		getMovieInfo(parameter);
 		break;
 	default:
