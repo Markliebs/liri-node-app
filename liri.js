@@ -1,5 +1,9 @@
 //allows access to the key.js file
 const twitterKeys = require('./keys.js');
+//allows access to the file system
+var fs = require('fs');
+//allows access to utils for coloring text 
+var utils = require('util');
 
 //placeholder value
 const twitter = require('twitter');
@@ -16,8 +20,6 @@ var twitterSearchParam = {
 //general request variable
 var request = require('request');
 
-//allows access to the file system
-var fs = require('fs');
 
 //sets variable for arguments
 var command = process.argv[2];
@@ -25,8 +27,6 @@ var command = process.argv[2];
 //sets variable to have access to all other inputs as a parameter to the queries
 var parameter = process.argv.slice(3).join('+');
 
-var utils = require('util');
-utils.inspect.styles.string = 'blue';
 
 //function for writing to txt.log
 function writeToLog(textParam) {
@@ -37,6 +37,7 @@ function writeToLog(textParam) {
 			return console.log(err);
 		};
 		//informs user that log was updated
+		utils.inspect.styles.string = 'yellow';
 		console.log('log.txt was updated');
 	});
 };
@@ -47,9 +48,11 @@ switch (command) {
 		getMyTweets();
 		break;
 	case 'spotify-this-song':
+		
 		getMusicInfo(parameter);
 		break;
 	case 'movie-this':
+		
 		getMovieInfo(parameter);
 		break;
 	default:
@@ -101,19 +104,18 @@ function getMusicInfo(parameter) {
 		if (err) {
 			console.log(err);
 		};
-		//formats information received
+		//formats information received and prints to console
 		body = JSON.parse(body);
-
-		//console.log(body);
-
-		//Writes response
-		console.log('--------------------------------------------------------------');
-		console.log('The highest rated match for your search is:');
-		console.log('Artist(s): ' + body.tracks.items[0].artists[0].name);
-		console.log('Song Title: ' + body.tracks.items[0].name);
-		console.log('Preview Link: ' + body.tracks.items[0].preview_url);
-		console.log('Album Name: ' + body.tracks.items[0].album.name);
-		console.log('--------------------------------------------------------------');
+		utils.inspect.styles.string = 'cyan';
+		console.dir('You Chose...wisely:', { colors: true })
+		utils.inspect.styles.string = 'yellow';
+		console.dir('Artist(s): ' + body.tracks.items[0].artists[0].name, { colors: true });
+		utils.inspect.styles.string = 'green';
+		console.dir('Album Name: ' + body.tracks.items[0].album.name, { colors: true });
+		utils.inspect.styles.string = 'yellow';
+		console.dir('Song Title: ' + body.tracks.items[0].name, { colors: true });
+		utils.inspect.styles.string = 'green';
+		console.dir('Preview Link: ' + body.tracks.items[0].preview_url, { colors: true });
 
 		//writes query request and response to log.txt
 		writeableObj = command + ", " + parameter + ", " + body.tracks.items[0].artists[0].name + ", " + body.tracks.items[0].name + ", " + body.tracks.items[0].preview_url + ", " + body.tracks.items[0].album.name + "\n";
@@ -137,16 +139,27 @@ function getMovieInfo(parameter) {
 		if (err) {
 			console.log(err);
 		}
-		//turns response into JSON object, and displays response in console
+		//turns response into JSON object, and prints to console
 		body = JSON.parse(body);
+		utils.inspect.styles.string = 'cyan';
+		console.dir('A fine movie indeed:', { colors: true });
+		utils.inspect.styles.string = 'yellow';
 		console.dir('Title: ' + body.Title, { colors: true });
+		utils.inspect.styles.string = 'green';
 		console.dir('Release Year: ' + body.Year, { colors: true });
+		utils.inspect.styles.string = 'yellow';
 		console.dir('IMDB Rating: ' + body.imdbRating, { colors: true });
+		utils.inspect.styles.string = 'green';
 		console.dir('Country: ' + body.Country, { colors: true });
+		utils.inspect.styles.string = 'yellow';
 		console.dir('Language: ' + body.Language, { colors: true });
+		utils.inspect.styles.string = 'green';
 		console.dir('Plot: ' + body.Plot, { colors: true });
+		utils.inspect.styles.string = 'yellow';
 		console.dir('Actors: ' + body.Actors, { colors: true });
+		utils.inspect.styles.string = 'green';
 		console.dir('Rotten Tomatoes Rating: ' + body.tomatoRating, { colors: true });
+		utils.inspect.styles.string = 'yellow';
 		console.dir('Rotten Tomatoes URL: ' + body.tomatoURL, { colors: true });
 
 		//writes query request and response to log.txt
