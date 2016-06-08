@@ -1,11 +1,11 @@
 //allows access to the key.js file
-var twitterKeys = require('./keys.js');
+const twitterKeys = require('./keys.js');
 
 //placeholder value
-var twitter = require('twitter');
+const twitter = require('twitter');
 
 //builds twitter object with keys to make calls
-var tweets = new twitter(twitterKeys.twitterKeys);
+const tweets = new twitter(twitterKeys.twitterKeys);
 
 //search parameter object
 var twitterSearchParam = {
