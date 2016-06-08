@@ -133,20 +133,10 @@ function getMovieInfo(parameter) {
 		if (err) {
 			console.log(err);
 		}
-		//turns response into JSON object
+		//turns response into JSON object, and displays response in console
 		body = JSON.parse(body);
-		//display's response in console.
-		console.log('--------------------------------------------------------------');
-		console.log('Title: ' + body.Title);
-		console.log('Year released: ' + body.Year);
-		console.log('IMDB rating: ' + body.imdbRating);
-		console.log('Countries Released in: ' + body.Country);
-		console.log('Languages Released in: ' + body.Language);
-		console.log('Plot: ' + body.Plot);
-		console.log('Actors: ' + body.Actors);
-		console.log('Rotten Tomatoes Rating: ' + body.tomatoRating);
-		console.log('Rotten Tomatoes URL: ' + body.tomatoURL);
-		console.log('--------------------------------------------------------------');
+		console.dir((body), {colors: true})
+		
 		//writes query request and response to log.txt
 		writeableObj = command + ", " + parameter + ", " + body.Title + ", " + body.Year + ", " + body.imdbRating + ", " + body.Country + ", " + body.Language + ", " + body.Plot + ", " + body.Actors + ", " + body.tomatoRating + ", " + body.tomatoURL + "\n";
 
