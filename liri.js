@@ -25,6 +25,9 @@ var command = process.argv[2];
 //sets variable to have access to all other inputs as a parameter to the queries
 var parameter = process.argv.slice(3).join('+');
 
+var utils = require('util');
+utils.inspect.styles.string = 'blue';
+
 //function for writing to txt.log
 function writeToLog(textParam) {
 	//appends file
